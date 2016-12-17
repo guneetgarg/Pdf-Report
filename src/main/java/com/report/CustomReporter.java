@@ -18,9 +18,9 @@ import org.testng.xml.XmlSuite;
 public class CustomReporter implements IReporter {
 	LinkedHashMap<String, String> hmap = new LinkedHashMap<String, String>();
 	ResultData RD = new ResultData();
-	
-	LinkedHashSet<String> passList= new LinkedHashSet <String>();
-	
+
+	LinkedHashSet<String> passList = new LinkedHashSet<String>();
+
 	public void generateReport(List<XmlSuite> xmlSuite, List<ISuite> iSuite, String s) {
 		for (ISuite suite : iSuite) {
 
@@ -34,11 +34,11 @@ public class CustomReporter implements IReporter {
 				RD.setPassCount(testContext.getPassedTests().size());
 				RD.setFailCount(testContext.getFailedTests().size());
 				RD.setSkipCount(testContext.getSkippedTests().size());
-				
-//				hmap.put("Start Time",testContext.getStartDate().toString());
-//				hmap.put("End Time",testContext.getEndDate().toString());
-				
-				//pass
+
+				// hmap.put("Start Time",testContext.getStartDate().toString());
+				// hmap.put("End Time",testContext.getEndDate().toString());
+
+				// pass
 				IResultMap passResult = testContext.getPassedTests();
 				Set<ITestResult> testsPassed = passResult.getAllResults();
 				if (testsPassed.size() > 0) {
@@ -46,15 +46,14 @@ public class CustomReporter implements IReporter {
 						RD.setPassedList(ReportUtil.getTime(testResult.getStartMillis()));
 						RD.setPassedList(ReportUtil.getPackageName(testResult.getInstanceName()));
 						RD.setPassedList(testResult.getName());
-						if(testResult.getMethod().getDescription()!=null)
+						if (testResult.getMethod().getDescription() != null)
 							RD.setPassedList(testResult.getMethod().getDescription());
 						else {
-							RD.setPassedList("NONE");
+							RD.setPassedList(" ");
 						}
 					}
 				}
-				
-	
+
 				// Failed Test Case
 				IResultMap failedResult = testContext.getFailedTests();
 				Set<ITestResult> testsFailed = failedResult.getAllResults();
@@ -65,14 +64,12 @@ public class CustomReporter implements IReporter {
 						RD.setFailedList(testResult.getName());
 						if (testResult.getThrowable().toString().length() > 0) {
 							RD.setFailedList(testResult.getThrowable().toString());
-						}		
-						else {
-							RD.setFailedList("NONE");
+						} else {
+							RD.setFailedList(" ");
 						}
 					}
 				}
-				
-				
+
 				// SkipTest Case
 				IResultMap skipResult = testContext.getSkippedTests();
 				Set<ITestResult> testsSkip = skipResult.getAllResults();
@@ -83,31 +80,27 @@ public class CustomReporter implements IReporter {
 						RD.setSkippedList(testResult.getName());
 						if (testResult.getThrowable().toString().length() > 0) {
 							RD.setSkippedList(testResult.getThrowable().toString());
-						}		
-						else {
-							RD.setSkippedList("NONE");
+						} else {
+							RD.setSkippedList(" ");
 						}
 					}
 				}
-				
-				
-				
+
 			}
 		}
-		
-		
+
 		PdfCreate create = new PdfCreate("automation1.pdf");
 		create.titlePdf("Automation Report");
-		hmap.put("Total", String.valueOf(RD.getPassCount()+RD.getFailCount()+RD.getSkipCount()));
+		hmap.put("Total", String.valueOf(RD.getPassCount() + RD.getFailCount() + RD.getSkipCount()));
 		hmap.put("Passed", RD.getPassCount().toString());
 		hmap.put("Failed", RD.getFailCount().toString());
 		hmap.put("Skipped", RD.getSkipCount().toString());
-		
+
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		dataSet.setValue("Failed", RD.getFailCount());
-		dataSet.setValue("Skipped",RD.getSkipCount());
-		dataSet.setValue("Passed",RD.getPassCount());
-	
+		dataSet.setValue("Skipped", RD.getSkipCount());
+		dataSet.setValue("Passed", RD.getPassCount());
+
 		new Graph().generateChart(dataSet);
 		create.createTable(hmap);
 		create.addNewLine(2);
@@ -117,12 +110,12 @@ public class CustomReporter implements IReporter {
 			create.newPage();
 			create.writePassData(RD.getPassedList());
 		}
-		
+
 		if (RD.getFailesList().size() > 0) {
 			create.newPage();
 			create.writeFailData(RD.getFailesList());
 		}
-		
+
 		if (RD.getSkippedList().size() > 0) {
 			create.newPage();
 			create.writeSkipData(RD.getSkippedList());
@@ -130,7 +123,5 @@ public class CustomReporter implements IReporter {
 
 		create.closeDocument();
 
-		
-	
 	}
 }
