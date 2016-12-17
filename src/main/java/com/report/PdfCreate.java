@@ -207,7 +207,6 @@ public class PdfCreate {
 
 		cell = new PdfPCell(new Phrase("Script Name"));
 		cell.setColspan(1);
-		http: // www.colorcombos.com/colors/C6E7CE
 		cell.setBorder(PdfPCell.NO_BORDER);
 		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
 		table.addCell(cell);
