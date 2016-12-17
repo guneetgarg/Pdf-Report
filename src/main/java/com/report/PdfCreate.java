@@ -160,13 +160,11 @@ public class PdfCreate {
 		try {
 			image1 = Image.getInstance(imagePath);
 		} catch (BadElementException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			document.add(image1);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -192,35 +190,38 @@ public class PdfCreate {
 		cell.setBorder(PdfPCell.NO_BORDER);
 		cell.setBackgroundColor(color);
 		table.addCell(cell);
+//
+//		cell = new PdfPCell(new Phrase("Time"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		table.addCell(tableHeading("Time"));
 
-		cell = new PdfPCell(new Phrase("Time"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+//		cell = new PdfPCell(new Phrase("Test Class Name"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+		table.addCell(tableHeading("Test Class Name"));
 
-		cell = new PdfPCell(new Phrase("Test Class Name"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+//		cell = new PdfPCell(new Phrase("Script Name"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+		table.addCell(tableHeading("Script Name"));
 
-		cell = new PdfPCell(new Phrase("Script Name"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
-
-		cell = new PdfPCell(new Phrase("Description"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+//		cell = new PdfPCell(new Phrase("Description"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+		table.addCell(tableHeading("Description"));
 
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int j = 0;
+		/*int j = 0;
 		System.out.println(linkedList.size());
 		Iterator<String> itr = linkedList.iterator();
 		while (itr.hasNext()) {
@@ -242,12 +243,55 @@ public class PdfCreate {
 			}
 
 			table.addCell(cell);
-		}
+		}*/
+		addListToCell(linkedList,table);
 
+		addTableToDocument(table);
+	}
+
+	public PdfPCell tableHeading(String str){
+		PdfPCell cell;
+		cell = new PdfPCell(new Phrase(str));
+		cell.setColspan(1);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		return cell;
+	}
+	
+	public PdfPCell addListToCell(LinkedList<String> linkedList, PdfPTable table){
+		PdfPCell cell = null;
+		int j = 0;
+		System.out.println(linkedList.size());
+		Iterator<String> itr = linkedList.iterator();
+		while (itr.hasNext()) {
+			cell = new PdfPCell(new Phrase(itr.next()));
+			cell.setColspan(1);
+			cell.setBorder(1);
+			if (j < 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
+				j++;
+			} else if (j > 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+				j--;
+			}
+			if (j == 4) {
+				j = 9;
+			}
+			if (j == 5) {
+				j = 0;
+			}
+		table.addCell(cell);
+
+		}
+		return cell;
+		
+	}
+	
+	
+	public void addTableToDocument(PdfPTable table) {
 		try {
 			document.add(table);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -268,63 +312,67 @@ public class PdfCreate {
 		cell.setBackgroundColor(BaseColor.GRAY);
 		table.addCell(cell);
 
-		cell = new PdfPCell(new Phrase("Time"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+//		cell = new PdfPCell(new Phrase("Time"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+//
+//		cell = new PdfPCell(new Phrase("Test Class Name"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+//
+//		cell = new PdfPCell(new Phrase("Script Name"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
+//
+//		cell = new PdfPCell(new Phrase("Description"));
+//		cell.setColspan(1);
+//		cell.setBorder(PdfPCell.NO_BORDER);
+//		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+//		table.addCell(cell);
 
-		cell = new PdfPCell(new Phrase("Test Class Name"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+		table.addCell(tableHeading("Time"));
+		table.addCell(tableHeading("Test Class Name"));
+		table.addCell(tableHeading("Script Name"));
+		table.addCell(tableHeading("Description"));
 
-		cell = new PdfPCell(new Phrase("Script Name"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
-
-		cell = new PdfPCell(new Phrase("Description"));
-		cell.setColspan(1);
-		cell.setBorder(PdfPCell.NO_BORDER);
-		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
-
+		
+		
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int j = 0;
-		System.out.println(linkedList.size());
-		Iterator<String> itr = linkedList.iterator();
-		while (itr.hasNext()) {
-			cell = new PdfPCell(new Phrase(itr.next()));
-			cell.setColspan(1);
-			cell.setBorder(1);
-			if (j < 4) {
-				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-				j++;
-			} else if (j > 4) {
-				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-				j--;
-			}
-			if (j == 4) {
-				j = 9;
-			}
-			if (j == 5) {
-				j = 0;
-			}
+//		int j = 0;
+//		System.out.println(linkedList.size());
+//		Iterator<String> itr = linkedList.iterator();
+//		while (itr.hasNext()) {
+//			cell = new PdfPCell(new Phrase(itr.next()));
+//			cell.setColspan(1);
+//			cell.setBorder(1);
+//			if (j < 4) {
+//				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
+//				j++;
+//			} else if (j > 4) {
+//				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+//				j--;
+//			}
+//			if (j == 4) {
+//				j = 9;
+//			}
+//			if (j == 5) {
+//				j = 0;
+//			}
+//
+//			table.addCell(cell);
+//		}
+		addListToCell(linkedList,table);
 
-			table.addCell(cell);
-		}
+		addTableToDocument(table);
 
-		try {
-			document.add(table);
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public void writeSkipData(LinkedList<String> linkedList) {
@@ -344,7 +392,7 @@ public class PdfCreate {
 		cell.setBackgroundColor(BaseColor.RED);
 		table.addCell(cell);
 
-		cell = new PdfPCell(new Phrase("Time"));
+		/*cell = new PdfPCell(new Phrase("Time"));
 		cell.setColspan(1);
 		cell.setBorder(PdfPCell.NO_BORDER);
 		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
@@ -366,40 +414,42 @@ public class PdfCreate {
 		cell.setColspan(1);
 		cell.setBorder(PdfPCell.NO_BORDER);
 		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-		table.addCell(cell);
+		table.addCell(cell);*/
 
+		table.addCell(tableHeading("Time"));
+		table.addCell(tableHeading("Test Class Name"));
+		table.addCell(tableHeading("Script Name"));
+		table.addCell(tableHeading("Description"));
+		
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int j = 0;
-		System.out.println(linkedList.size());
-		Iterator<String> itr = linkedList.iterator();
-		while (itr.hasNext()) {
-			cell = new PdfPCell(new Phrase(itr.next()));
-			cell.setColspan(1);
-			cell.setBorder(1);
-			if (j < 4) {
-				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-				j++;
-			} else if (j > 4) {
-				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-				j--;
-			}
-			if (j == 4) {
-				j = 9;
-			}
-			if (j == 5) {
-				j = 0;
-			}
-			table.addCell(cell);
-		}
+//		int j = 0;
+//		System.out.println(linkedList.size());
+//		Iterator<String> itr = linkedList.iterator();
+//		while (itr.hasNext()) {
+//			cell = new PdfPCell(new Phrase(itr.next()));
+//			cell.setColspan(1);
+//			cell.setBorder(1);
+//			if (j < 4) {
+//				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
+//				j++;
+//			} else if (j > 4) {
+//				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+//				j--;
+//			}
+//			if (j == 4) {
+//				j = 9;
+//			}
+//			if (j == 5) {
+//				j = 0;
+//			}
+//			table.addCell(cell);
+//		}
 
-		try {
-			document.add(table);
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		addListToCell(linkedList,table);
+		addTableToDocument(table);
+
 	}
 
 }
