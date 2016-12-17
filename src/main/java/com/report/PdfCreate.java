@@ -254,77 +254,77 @@ public class PdfCreate {
 
 	public void writeFailData(LinkedList<String> linkedList) {
 		// a table with three columns
-				PdfPTable table = new PdfPTable(4);
-				table.setWidthPercentage(100);
-				table.getDefaultCell().setBorder(0);
+		PdfPTable table = new PdfPTable(4);
+		table.setWidthPercentage(100);
+		table.getDefaultCell().setBorder(0);
 
-				// the cell object
-				PdfPCell cell;
+		// the cell object
+		PdfPCell cell;
 
-				// we add a cell with colspan 3
-				cell = new PdfPCell(new Phrase("Failed"));
-				cell.setColspan(4);
-				cell.setBorder(PdfPCell.NO_BORDER);
-				cell.setBackgroundColor(BaseColor.GRAY);
-				table.addCell(cell);
+		// we add a cell with colspan 3
+		cell = new PdfPCell(new Phrase("Failed"));
+		cell.setColspan(4);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(BaseColor.GRAY);
+		table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase("Time"));
-				cell.setColspan(1);
-				cell.setBorder(PdfPCell.NO_BORDER);
-				cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-				table.addCell(cell);
+		cell = new PdfPCell(new Phrase("Time"));
+		cell.setColspan(1);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase("Test Class Name"));
-				cell.setColspan(1);
-				cell.setBorder(PdfPCell.NO_BORDER);
-				cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-				table.addCell(cell);
+		cell = new PdfPCell(new Phrase("Test Class Name"));
+		cell.setColspan(1);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase("Script Name"));
-				cell.setColspan(1);
-				cell.setBorder(PdfPCell.NO_BORDER);
-				cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-				table.addCell(cell);
+		cell = new PdfPCell(new Phrase("Script Name"));
+		cell.setColspan(1);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase("Description"));
-				cell.setColspan(1);
-				cell.setBorder(PdfPCell.NO_BORDER);
-				cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
-				table.addCell(cell);
+		cell = new PdfPCell(new Phrase("Description"));
+		cell.setColspan(1);
+		cell.setBorder(PdfPCell.NO_BORDER);
+		cell.setBackgroundColor(WebColors.getRGBColor("#84CF96"));
+		table.addCell(cell);
 
-				// PdfPTable table = new PdfPTable(4);
-				// table.setWidthPercentage(100);
-				table.getDefaultCell().setBorder(2);
-				int j=0;
-				System.out.println(linkedList.size());
-				Iterator<String> itr = linkedList.iterator();
-				while (itr.hasNext()) {
-					cell = new PdfPCell(new Phrase(itr.next()));
-					cell.setColspan(1);
-					cell.setBorder(1);
-					if (j < 4) {
-						cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-						j++;
-					} else if (j > 4) {
-						cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-						j--;
-					}
-					if (j == 4) {
-						j = 9;
-					}
-					if (j == 5) {
-						j = 0;
-					}
-					
-					table.addCell(cell);
-				}
+		// PdfPTable table = new PdfPTable(4);
+		// table.setWidthPercentage(100);
+		table.getDefaultCell().setBorder(2);
+		int j = 0;
+		System.out.println(linkedList.size());
+		Iterator<String> itr = linkedList.iterator();
+		while (itr.hasNext()) {
+			cell = new PdfPCell(new Phrase(itr.next()));
+			cell.setColspan(1);
+			cell.setBorder(1);
+			if (j < 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
+				j++;
+			} else if (j > 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+				j--;
+			}
+			if (j == 4) {
+				j = 9;
+			}
+			if (j == 5) {
+				j = 0;
+			}
 
-				try {
-					document.add(table);
-				} catch (DocumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			table.addCell(cell);
+		}
+
+		try {
+			document.add(table);
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void writeSkipData(LinkedList<String> linkedList) {
@@ -371,7 +371,7 @@ public class PdfCreate {
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int j=0;
+		int j = 0;
 		System.out.println(linkedList.size());
 		Iterator<String> itr = linkedList.iterator();
 		while (itr.hasNext()) {
@@ -390,7 +390,8 @@ public class PdfCreate {
 			}
 			if (j == 5) {
 				j = 0;
-			}			table.addCell(cell);
+			}
+			table.addCell(cell);
 		}
 
 		try {
