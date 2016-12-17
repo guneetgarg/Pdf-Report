@@ -220,20 +220,27 @@ public class PdfCreate {
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int i = 0,j=4;
+		int j = 0;
 		System.out.println(linkedList.size());
 		Iterator<String> itr = linkedList.iterator();
 		while (itr.hasNext()) {
 			cell = new PdfPCell(new Phrase(itr.next()));
 			cell.setColspan(1);
 			cell.setBorder(1);
-		//	if (i==0) {
+			if (j < 4) {
 				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-//				i++;
-//			} else if (i==1) {
-//				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-//				i--;
-//			}
+				j++;
+			} else if (j > 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+				j--;
+			}
+			if (j == 4) {
+				j = 9;
+			}
+			if (j == 5) {
+				j = 0;
+			}
+
 			table.addCell(cell);
 		}
 
@@ -288,20 +295,27 @@ public class PdfCreate {
 				// PdfPTable table = new PdfPTable(4);
 				// table.setWidthPercentage(100);
 				table.getDefaultCell().setBorder(2);
-				int i = 0,j=4;
+				int j=0;
 				System.out.println(linkedList.size());
 				Iterator<String> itr = linkedList.iterator();
 				while (itr.hasNext()) {
 					cell = new PdfPCell(new Phrase(itr.next()));
 					cell.setColspan(1);
 					cell.setBorder(1);
-				//	if (i==0) {
+					if (j < 4) {
 						cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-//						i++;
-//					} else if (i==1) {
-//						cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-//						i--;
-//					}
+						j++;
+					} else if (j > 4) {
+						cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+						j--;
+					}
+					if (j == 4) {
+						j = 9;
+					}
+					if (j == 5) {
+						j = 0;
+					}
+					
 					table.addCell(cell);
 				}
 
@@ -357,21 +371,26 @@ public class PdfCreate {
 		// PdfPTable table = new PdfPTable(4);
 		// table.setWidthPercentage(100);
 		table.getDefaultCell().setBorder(2);
-		int i = 0,j=4;
+		int j=0;
 		System.out.println(linkedList.size());
 		Iterator<String> itr = linkedList.iterator();
 		while (itr.hasNext()) {
 			cell = new PdfPCell(new Phrase(itr.next()));
 			cell.setColspan(1);
 			cell.setBorder(1);
-		//	if (i==0) {
+			if (j < 4) {
 				cell.setBackgroundColor(WebColors.getRGBColor("#C6E7CE"));
-//				i++;
-//			} else if (i==1) {
-//				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
-//				i--;
-//			}
-			table.addCell(cell);
+				j++;
+			} else if (j > 4) {
+				cell.setBackgroundColor(WebColors.getRGBColor("#CEFFCE"));
+				j--;
+			}
+			if (j == 4) {
+				j = 9;
+			}
+			if (j == 5) {
+				j = 0;
+			}			table.addCell(cell);
 		}
 
 		try {
